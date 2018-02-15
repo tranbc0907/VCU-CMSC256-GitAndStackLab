@@ -1,8 +1,11 @@
+import java.util.Arrays;
+import java.util.Stack;  
+
 public class ArrayBasedStack<T> implements StackInterface<T> {
    
    private T[] data;  // array 
    private int topOfStack; 
-   private final int INITIAL_CAPACITY = 5; 
+   private int INITIAL_CAPACITY = 5; 
    private boolean initialized; 
    
    public ArrayBasedStack(int length) { 
@@ -11,11 +14,32 @@ public class ArrayBasedStack<T> implements StackInterface<T> {
       if (topOfStack  > 0) { 
          throw new IllegalArgumentException ("This can't be 0"); 
    }
+   initialized = true; 
    }
    
-   /** Adds a new entry to the top of this stack.
-       @param newEntry  An object to be added to the stack. */
-   public void push(T newEntry) {}
+   public ArrayBasedStack() { 
+    INITIAL_CAPACITY = 5; 
+   }
+   
+   private int expandArray() {
+      T[] newArray = Arrays.copyOf(data, (data.length *2)); 
+      return 1;  
+   
+   }
+   
+   public void push(T newEntry) {
+      StackInterface<String> stack = new ArrayBasedStack(3); 
+      stack.push("b");
+      stack.push("e");
+      stack.peek();
+      stack.pop();
+      stack.peek();
+      stack.pop();
+      stack.push("o");
+      stack.pop();
+      System.out.println(stack.isEmpty());
+      stack.pop();
+   }
   
    /** Removes and returns this stack's top entry.
        @return  The object at the top of the stack. 
